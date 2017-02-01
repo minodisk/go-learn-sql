@@ -124,7 +124,7 @@ func (u Post) InsertSQL() (string, sql.NullInt64, sql.NullString, sql.NullInt64)
 type Posts []Post
 
 func (ps Posts) SelectSQL() string {
-	return "SELECT * FROM posts LEFT JOIN users ON posts.user_id = users.id"
+	return "SELECT posts.id as `posts-id`, posts.body, posts.user_id, users.id, users.name, users.gender, users.age FROM posts LEFT JOIN users ON posts.user_id = users.id"
 }
 
 func (ps *Posts) ReadRows(rows *sql.Rows) error {
